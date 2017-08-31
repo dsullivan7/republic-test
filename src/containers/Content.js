@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearchClick: () => dispatch(searchCharacter({name: 'Walder'}))
+  onSubmit: (data) => console.log(data) || dispatch(searchCharacter(data))
 });
 
 const ContentContainer = connect(
