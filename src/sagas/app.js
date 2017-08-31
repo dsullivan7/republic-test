@@ -1,15 +1,23 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { fetchCharacter } from '../clients'
+import { fetchCharacter } from '../clients/gotClient'
+
+import {
+  SEARCH_CHARACTER_REQUESTED,
+  SEARCH_CHARACTER_SUCCEEDED,
+  SEARCH_CHARACTER_FAILED
+} from '../constants/app';
 
 function* searchCharacter(action) {
-   try {
-      const user = yield call(Api.fetchUser);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-   } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
-   }
+  try {
+    const characters = yield call(fetchCharacter, {name: 'Walder'});
+    yield put({type: SEARCH_CHARACTER_SUCCEEDED, characters: characters});
+  } catch (e) {
+    yield put({type: SEARCH_CHARACTER_FAILED, message: e.message});
+  }
 }
 
 function* appSaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", searchCharacter);
+  yield takeEvery(SEARCH_CHARACTER_REQUESTED, searchCharacter);
 }
+
+export default appSaga;

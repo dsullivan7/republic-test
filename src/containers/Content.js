@@ -4,7 +4,7 @@ import Content from '../components/Content';
 import { searchCharacter } from '../actions/app'
 
 const mapStateToProps = (state) => ({
-  character: state.app.get('character').toJS()
+  characters: state.app.get('characters').toJS()
 });
 
 const mapDispatchToProps = (dispatch) => ({
