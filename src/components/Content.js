@@ -14,11 +14,11 @@ const Center = styled.div`
   flex-direction: column;
 `;
 
-const Container = styled.div`
+const AppWrapper = styled.div`
   padding: 70px;
 `
 
-const Component = styled.div`
+const Entry = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
 `
@@ -30,16 +30,16 @@ const ResultsWrapper = styled.div`
 const renderTextField = ({input, meta, ...rest}) => (<TextField hintText="Character Name" {...input} {...rest} />)
 
 const Content = ({ characters, loading, handleSubmit }) => (
-  <Container>
+  <AppWrapper>
     <Center>
       <form onSubmit={handleSubmit}>
-        <Component>
+        <Entry>
           <Field name="name" component={renderTextField} />
-        </Component>
+        </Entry>
         <Center>
-          <Component>
+          <Entry>
               <FlatButton type="submit" label="Search" />
-          </Component>
+          </Entry>
         </Center>
       </form>
       <ResultsWrapper>
@@ -48,7 +48,7 @@ const Content = ({ characters, loading, handleSubmit }) => (
         </Center>
       </ResultsWrapper>
     </Center>
-  </Container>
+  </AppWrapper>
 );
 
 Content.propTypes = {
