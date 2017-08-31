@@ -4,8 +4,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 
 import {mount} from 'enzyme';
-import App from '../src/App';
-import configureStore from '../src/store/configureStore';
+import App from '../../src/App';
+import configureStore from '../../src/store/configureStore';
 
 let store;
 
