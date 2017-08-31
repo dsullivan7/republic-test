@@ -22,6 +22,6 @@ beforeEach(()=> {
 test('Content renders correctly', () => {
   const app = mount(<Provider store={store}><App/></Provider>)
 
-  app.find('FlatButton').simulate('click');
+  app.find('FlatButton').simulate('submit');
   expect(app.find('h1').text()).toEqual('GOT Character Name');
 });

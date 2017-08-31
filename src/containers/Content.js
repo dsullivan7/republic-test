@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (data) => console.log(data) || dispatch(searchCharacter(data))
+  onSubmit: (data) => dispatch(searchCharacter(data))
 });
 
 const ContentContainer = connect(
