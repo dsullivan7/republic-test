@@ -9,8 +9,8 @@ import {
 
 function* searchCharacter(action) {
   try {
-    const characters = yield call(fetchCharacter, {name: 'Walder'});
-    yield put({type: SEARCH_CHARACTER_SUCCEEDED, characters: characters});
+    const characters = yield call(fetchCharacter, action.query);
+    yield put({type: SEARCH_CHARACTER_SUCCEEDED, characters});
   } catch (e) {
     yield put({type: SEARCH_CHARACTER_FAILED, message: e.message});
   }

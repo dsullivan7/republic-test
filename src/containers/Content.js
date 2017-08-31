@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearchClick: () => dispatch(searchCharacter())
+  onSearchClick: () => dispatch(searchCharacter({name: 'Walder'}))
 });
 
 const ContentContainer = connect(
