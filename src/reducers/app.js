@@ -1,13 +1,15 @@
-import {
-  DEFAULT_ACTION
-} from '../actions/app';
+import { fromJS } from 'immutable'
 
-const initialState = {};
+import {
+  SEARCH_CHARACTER
+} from '../constants/app';
+
+const initialState = fromJS({ character: {} });
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SEARCH_CHARACTER:
+      return state.mergeDeep({character: {name: 'MyName'}});
 
     default:
       return state;

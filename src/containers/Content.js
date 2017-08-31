@@ -1,19 +1,15 @@
 import { connect } from 'react-redux';
 
 import Content from '../components/Content';
+import { searchCharacter } from '../actions/app'
 
+const mapStateToProps = (state) => ({
+  character: state.app.get('character').toJS()
+});
 
-const mapStateToProps = () => {
-  return {}
-};
-
-const mapDispatchToProps = () => {
-  return {
-    onSearchClick: () => {
-      console.log('This has been clicked!');
-    }
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  onSearchClick: () => dispatch(searchCharacter())
+});
 
 const ContentContainer = connect(
   mapStateToProps,

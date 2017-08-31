@@ -1,30 +1,21 @@
 /* eslint-env jest */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Provider} from 'react-redux';
+
 import {mount} from 'enzyme';
-import Content from '../src/containers/Content';
-import configureStore from 'redux-mock-store';
+import App from '../src/App';
+import configureStore from '../src/store/configureStore';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-const muiTheme = getMuiTheme();
-
-export const muiMountWithContext = node => mount(node, {
-  context: { muiTheme },
-  childContextTypes: { muiTheme: PropTypes.object },
-});
-
-const initialState = {}
-const mockStore = configureStore()
-let store
+let store;
 
 beforeEach(()=>{
-  store = mockStore(initialState)
+  store = configureStore();
 })
 
 test('Content renders correctly', () => {
-  const content = muiMountWithContext(<Content store={store} />)
+  const app = mount(<Provider store={store}><App/></Provider>)
 
-  content.find('FlatButton').simulate('click');
+  app.find('FlatButton').simulate('click');
+  expect(app.find('h1').text()).toEqual('MyName');
 });

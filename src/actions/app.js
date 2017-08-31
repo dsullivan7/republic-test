@@ -1,9 +1,9 @@
 import {
-  DEFAULT_ACTION
+  SEARCH_CHARACTER
 } from '../constants/app';
 
-export const defaultAction = () => {
+export const searchCharacter = () => {
   return {
-    type: DEFAULT_ACTION,
+    type: SEARCH_CHARACTER,
   };
 }

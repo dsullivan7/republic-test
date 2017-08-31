@@ -11,10 +11,13 @@ const Wrapper = styled.div`
   margin-top: 20px;
 `;
 
-const Content = ({ characterPayload, onSearchClick }) => (
+const Content = ({ character, onSearchClick }) => (
   <Wrapper>
-    <TextField hintText="My Hint Text" />
+    <TextField hintText="Character Name" />
     <FlatButton onClick={onSearchClick} label="Search" />
+    { character.name &&
+      (<h1>{character.name}</h1>)
+    }
   </Wrapper>
 );
 
