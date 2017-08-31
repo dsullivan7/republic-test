@@ -10,7 +10,7 @@ const characterPath = '/characters'
  */
 
 const searchCharacterEndpoint = (parameters) =>
-  `${apiEndpoint}${characterPath}?${Object.keys(parameters).map(key => `${key}=${parameters[key]}`).join('&')}&page=1&pageSize=1`
+  `${apiEndpoint}${characterPath}?${Object.keys(parameters).map(key => `${key}=${parameters[key]}`).join('&')}&page=1&pageSize=10`
 
 /**
  * returns a fetch promise to retrieve character payload

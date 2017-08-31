@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import {Field, reduxForm} from 'redux-form';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import CircularProgress from 'material-ui/CircularProgress';
+
+import CharacterList from './CharacterList'
 
 const Center = styled.div`
   display: flex;
@@ -15,28 +18,42 @@ const Container = styled.div`
   padding: 70px;
 `
 
+const Component = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`
+
+const ResultsWrapper = styled.div`
+  width: 100%;
+`
+
 const renderTextField = ({input, meta, ...rest}) => (<TextField hintText="Character Name" {...input} {...rest} />)
 
-const Content = ({ characters, handleSubmit }) => (
+const Content = ({ characters, loading, handleSubmit }) => (
   <Container>
     <Center>
       <form onSubmit={handleSubmit}>
-        <div>
+        <Component>
           <Field name="name" component={renderTextField} />
-        </div>
+        </Component>
         <Center>
-          <FlatButton type="submit" label="Search" />
+          <Component>
+              <FlatButton type="submit" label="Search" />
+          </Component>
         </Center>
       </form>
-        { characters.length !== 0 &&
-          (<h1>{characters[0].name}</h1>)
-        }
+      <ResultsWrapper>
+        <Center>
+          { loading? <CircularProgress size={120} thickness={6} /> : <CharacterList characters={characters} /> }
+        </Center>
+      </ResultsWrapper>
     </Center>
   </Container>
 );
 
 Content.propTypes = {
-  character: PropTypes.object,
+  characters: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
 
