@@ -17,7 +17,7 @@ const StyledPaper = styled(Paper)`
   width: 100%;
 `
 
-const CharacterList = ({ characters }) => !characters.length? null : (
+const CharacterList = ({ characters, houses }) => !characters.length? null : (
   <StyledPaper zDepth={2}>
     <Table selectable={false}>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -26,6 +26,7 @@ const CharacterList = ({ characters }) => !characters.length? null : (
           <TableHeaderColumn>Title</TableHeaderColumn>
           <TableHeaderColumn>Culture</TableHeaderColumn>
           <TableHeaderColumn>Alive</TableHeaderColumn>
+          <TableHeaderColumn>Houses</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
@@ -35,6 +36,7 @@ const CharacterList = ({ characters }) => !characters.length? null : (
               title={character.titles.length && character.titles[0]}
               culture={character.culture}
               isAlive={!(character.died)}
+              houses={character.allegiances.map(allegiance => allegiance.split('/').pop()).map(houseId => houses[houseId].name)}
             />
         ))}
       </TableBody>

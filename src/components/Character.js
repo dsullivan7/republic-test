@@ -5,12 +5,13 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const Character = ({ name, isAlive, title, culture }) => (
+const Character = ({ name, isAlive, title, culture, houses }) => (
   <TableRow>
     <TableRowColumn>{name}</TableRowColumn>
     <TableRowColumn>{title}</TableRowColumn>
     <TableRowColumn>{culture}</TableRowColumn>
     <TableRowColumn>{isAlive? 'Yes' : 'No' }</TableRowColumn>
+    <TableRowColumn>{houses.join(', ')}</TableRowColumn>
   </TableRow>
 );
 
