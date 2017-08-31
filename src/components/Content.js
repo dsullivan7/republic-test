@@ -29,7 +29,7 @@ const ResultsWrapper = styled.div`
 
 const renderTextField = ({input, meta, ...rest}) => (<TextField hintText="Character Name" {...input} {...rest} />)
 
-const Content = ({ characters, loading, handleSubmit }) => (
+const Content = ({ characters, houses, loading, handleSubmit }) => (
   <AppWrapper>
     <Center>
       <form onSubmit={handleSubmit}>

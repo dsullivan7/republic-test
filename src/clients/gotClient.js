@@ -2,6 +2,7 @@ import 'isomorphic-fetch'
 
 const apiEndpoint = 'https://anapioficeandfire.com/api'
 const characterPath = '/characters'
+const housePath = '/houses'
 
 /**
  * returns a url to search characters
@@ -18,3 +19,5 @@ const searchCharacterEndpoint = (parameters) =>
  * @return {Promise} - a fetch promise
  */
 export const fetchCharacter = (parameters) => fetch(searchCharacterEndpoint(parameters)).then(res => res.json())
+
+export const fetchHouse = (number) => fetch(`${apiEndpoint}${housePath}/${number}`).then(res => res.json())

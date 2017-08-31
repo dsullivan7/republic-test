@@ -5,6 +5,7 @@ import { searchCharacter } from '../actions/app'
 
 const mapStateToProps = (state) => ({
   characters: state.app.get('characters').toJS(),
+  houses: state.app.get('houses').toJS(),
   loading: state.app.get('loading'),
 });
 
