@@ -7,16 +7,21 @@ import {
   SEARCH_CHARACTER_FAILED
 } from '../constants/app';
 
-export const getHouses = (state) => state.app.get('houses').toJS()
+const getHouses = (state) => state.app.get('houses').toJS()
 
 function* searchCharacter(action) {
   try {
     const characters = yield call(fetchCharacter, action.query);
     const houses = yield select(getHouses);
 
-    for(let character of characters){
+    for (let character of characters){
       for (let allegiance of character.allegiances) {
+
+        // get the houseId from the house URL
         const houseId = allegiance.split('/').pop()
+
+        // if we do not have the house stored already
+        // call the house api using the api client and store the result in the state
         if (!houses[houseId]) {
           houses[houseId] = yield call(fetchHouse, houseId);
         }

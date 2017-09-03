@@ -20,4 +20,9 @@ const searchCharacterEndpoint = (parameters) =>
  */
 export const fetchCharacter = (parameters) => fetch(searchCharacterEndpoint(parameters)).then(res => res.json())
 
-export const fetchHouse = (number) => fetch(`${apiEndpoint}${housePath}/${number}`).then(res => res.json())
+/**
+ * returns a fetch promise to retrieve house payload
+ * @param  {Integer} id - an id of the house to look up
+ * @return {Promise} - a fetch promise
+ */
+export const fetchHouse = (id) => fetch(`${apiEndpoint}${housePath}/${id}`).then(res => res.json())
