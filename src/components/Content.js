@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {Field, reduxForm} from 'redux-form';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import CharacterList from './CharacterList'
@@ -29,8 +30,16 @@ const ResultsWrapper = styled.div`
 
 const renderTextField = ({input, meta, ...rest}) => (<TextField hintText="Character Name" {...input} {...rest} />)
 
-const Content = ({ characters, houses, loading, handleSubmit }) => (
+const Content = ({ characters, houses, loading, handleSubmit, requestError, errorDismissed }) => (
   <AppWrapper>
+    <Dialog
+        title="Error"
+        modal={false}
+        open={requestError}
+        onRequestClose={errorDismissed}
+    >
+      There was an error processing the request
+    </Dialog>
     <Center>
       <form onSubmit={handleSubmit}>
         <Entry>
@@ -55,6 +64,8 @@ const Content = ({ characters, houses, loading, handleSubmit }) => (
 
 Content.propTypes = {
   characters: PropTypes.array.isRequired,
+  requestError: PropTypes.bool.isRequired,
+  errorDismissed: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
