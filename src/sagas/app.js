@@ -1,4 +1,4 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects'
+import { all, call, put, select, takeEvery } from 'redux-saga/effects'
 import { fetchCharacter, fetchHouse } from '../clients/gotClient'
 
 import {
@@ -14,20 +14,27 @@ function* searchCharacter(action) {
     const characters = yield call(fetchCharacter, action.query);
     const houses = yield select(getHouses);
 
+    const houseRequests = {};
+
     // retreive the houses for each character
-    for (let character of characters){
-      for (let allegiance of character.allegiances) {
+    characters.forEach(character =>
+      character.allegiances.forEach(allegiance => {
 
         // get the houseId from the house URL
-        const houseId = allegiance.split('/').pop()
+        const houseId = allegiance.split('/').pop();
 
         // if we do not have the house stored already
         // call the house api using the api client and store the result in the state
-        if (!houses[houseId]) {
-          houses[houseId] = yield call(fetchHouse, houseId);
+        if (!houses[houseId] && !houseRequests[houseId]) {
+          houseRequests[houseId] = call(fetchHouse, houseId);
         }
-      }
-    }
+      })
+    )
+
+    // make all the house requests in parallel
+    const houseIds = Object.keys(houseRequests);
+    const houseResults = yield all(houseIds.map(id => houseRequests[id]));
+    houseIds.forEach((id, idx) => { houses[id] = houseResults[idx] });
 
     yield put({type: SEARCH_CHARACTER_SUCCEEDED, characters, houses});
   } catch (e) {
