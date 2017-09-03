@@ -43,9 +43,11 @@ const Content = ({ characters, houses, loading, handleSubmit }) => (
         </Center>
       </form>
       <ResultsWrapper>
-        <Center>
-          { loading? <CircularProgress size={120} thickness={6} /> : <CharacterList houses={houses} characters={characters} /> }
-        </Center>
+        <Entry>
+          <Center>
+            { loading? <CircularProgress size={120} thickness={6} /> : <CharacterList houses={houses} characters={characters} /> }
+          </Center>
+        </Entry>
       </ResultsWrapper>
     </Center>
   </AppWrapper>
