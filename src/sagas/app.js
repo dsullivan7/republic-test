@@ -14,6 +14,7 @@ function* searchCharacter(action) {
     const characters = yield call(fetchCharacter, action.query);
     const houses = yield select(getHouses);
 
+    // retreive the houses for each character
     for (let character of characters){
       for (let allegiance of character.allegiances) {
 
