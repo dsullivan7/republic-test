@@ -11,7 +11,7 @@ import configureStore from '../../src/store/configureStore';
 
 // mocking
 import * as gotClient from '../../src/clients/gotClient'
-gotClient.fetchCharacter = jest.fn(() => [{name: 'GOT Character Name'}])
+gotClient.fetchCharacter = jest.fn(() => [{name: 'GOT Character Name', allegiances: [], titles: []}])
 
 let store;
 
@@ -23,5 +23,5 @@ test('Content renders correctly', () => {
   const app = mount(<Provider store={store}><App/></Provider>)
 
   app.find('FlatButton').simulate('submit');
-  expect(app.find('Character').text()).toEqual('GOT Character Name');
+  expect(app.find('TableRowColumn').first().text()).toEqual('GOT Character Name');
 });
